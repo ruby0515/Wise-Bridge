@@ -1,0 +1,361 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>ChatGPT 웹페이지 만들기</title>
+    <link rel="stylesheet" href="https://s3.ap-northeast-2.amazonaws.com/materials.spartacodingclub.kr/easygpt/default.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+        crossorigin="anonymous"></script>
+    <style>
+        /* Hero Section 스타일 */
+        .hero-section {
+            background-color: #b3d9ff; /* 연한 하늘색 */
+            color: white;
+            text-align: center;
+            padding: 50px 0;
+            font-family: 'Times New Roman', Times, serif; /* 명조체 */
+            height: 50vh; /* 화면 절반 높이 */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        .hero-section h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+        }
+
+        .hero-section p {
+            font-size: 1.25rem;
+        }
+
+        /* 탭 스타일 */
+        .tabs-section {
+            padding: 50px 0;
+            background-color: #f8f9fa;
+        }
+
+        .tabs-section h2 {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .tab-content {
+            background-color: #ffffff;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+        }
+
+        /* 링크 스타일 */
+        .link-container {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .link-container a {
+            text-decoration: none;
+            color: #007bff;
+            font-size: 1.1rem;
+        }
+        
+        .link-container a:hover {
+            text-decoration: underline;
+        }
+
+        /* 유형별 설명 */
+        .type-description {
+            font-size: 1rem;
+            margin-top: 10px;
+            color: #555;
+        }
+
+        .type-description h5 {
+            margin-top: 20px;
+            font-size: 1.2rem;
+            color: #333;
+        }
+
+        .example-section {
+            display: none;
+            margin-top: 10px;
+            background-color: #f1f1f1;
+            padding: 10px;
+            border-radius: 8px;
+        }
+
+        .example-section ul {
+            list-style-type: none;
+            padding-left: 0;
+        }
+        
+        .example-section ul li {
+            margin-bottom: 5px;
+        }
+
+        /* 버튼 스타일 */
+        .btn-light-green {
+            background-color: #d4edda; /* 옅은 연두색 */
+            border-color: #c3e6cb;
+            color: #155724;
+        }
+
+        .btn-light-green:hover {
+            background-color: #c3e6cb;
+            border-color: #b1dfbb;
+        }
+
+    </style>
+    <script>
+        function toggleExample(exampleId) {
+            const exampleSection = document.getElementById(exampleId);
+            // Toggle visibility
+            if (exampleSection.style.display === "none" || exampleSection.style.display === "") {
+                exampleSection.style.display = "block";
+            } else {
+                exampleSection.style.display = "none";
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <!-- Hero Section -->
+    <div class="hero-section">
+        <h1>Wide Bridge</h1>
+        <p>작은 변화가 세상을 바꾼다는 믿음으로, 선한 영향력을 미치는 기업들을 소개합니다.</p>
+    </div>
+
+    <!-- 탭 섹션 -->
+    <div class="tabs-section">
+        <h2>사회적 기업이란?</h2>
+        <ul class="nav nav-tabs" id="myTab" role="tablist">
+            <li class="nav-item" role="presentation">
+                <a class="nav-link active" id="definition-tab" data-bs-toggle="tab" href="#definition" role="tab"
+                    aria-controls="definition" aria-selected="true">사회적 기업의 정의</a>
+            </li>
+            <li class="nav-item" role="presentation">
+                <a class="nav-link" id="types-tab" data-bs-toggle="tab" href="#types" role="tab" aria-controls="types"
+                    aria-selected="false">사회적 기업의 유형</a>
+            </li>
+        </ul>
+        <div class="tab-content" id="myTabContent">
+            <!-- 사회적 기업의 정의 -->
+            <div class="tab-pane fade show active" id="definition" role="tabpanel" aria-labelledby="definition-tab">
+                <h3>사회적 기업의 정의</h3>
+                <p>“사회적기업”이란 취약계층에게 사회서비스 또는 일자리를 제공하거나 지역사회에 공헌함으로써 지역주민의 삶의 질을 높이는 등의 사회적 목적을 추구하면서 재화 및 서비스의 생산·판매 등 영업활동을 하는 기업으로서 사회적기업으로 인증을 받은 자를 말합니다(「사회적기업 육성법」 제2조제1호). 사회적기업은 영리기업과 비영리기업의 중간 형태로, 사회적 목적을 우선적으로 추구하면서 재화·서비스의 생산·판매 등 영업활동을 수행합니다(한국사회적기업진흥원-사회적기업-사회적기업이란?-개념).</p>
+                
+                <!-- 사회적 기업 이해 바로가기 링크 -->
+                <div class="link-container">
+                    <a href="https://easylaw.go.kr/CSP/CnpClsMainBtr.laf?popMenu=ov&csmSeq=1895&ccfNo=1&cciNo=1&cnpClsNo=1" target="_blank">사회적 기업 이해 바로가기</a>
+                </div>
+                 <!-- 사회적 기업 더 알아보기 바로가기 링크 -->
+                 <div class="link-container">
+                    <a href="https://www.seis.or.kr/home/sub.do?menukey=7127" target="_blank">사회적 기업 더 알아보기</a>
+                </div>
+            </div>
+            <!-- 사회적 기업의 유형 -->
+            <div class="tab-pane fade" id="types" role="tabpanel" aria-labelledby="types-tab">
+                <h3>사회적 기업의 유형</h3>
+                <p>사회적 기업은 다양한 형태로 존재합니다. 주요 유형은 다음과 같습니다:</p>
+                <ul>
+                    <li><a class="nav-link" id="type1-tab" data-bs-toggle="tab" href="#type1" role="tab" aria-controls="type1" aria-selected="true">1. 일자리 제공형</a></li>
+                    <p>이 유형의 사회적 기업은 취약계층, 장애인, 이민자 등에게 고용 기회를 제공하여 사회적 차별을 해소하는 것을 목표로 합니다.</p>
+                    <button class="btn btn-light-green" onclick="toggleExample('example1')">기업 예시 보기</button>
+                    <div id="example1" class="example-section">
+                        <ul>
+                            <li><a href="https://saltandlight.co.kr/" target="_blank"><strong>✅ 한국장애인공연연주단</strong></a></li>
+                            <li>• 장애인 전문 연주단 운영, 공연 예술 발전 및 장애인 예술 인재 발굴 등 일자리 제공 중심</li>
+                        </ul>
+                    </div>
+                    <li><a class="nav-link" id="type2-tab" data-bs-toggle="tab" href="#type2" role="tab" aria-controls="type2" aria-selected="false">2. 사회서비스 제공형</a></li>
+                    <p>의료, 교육, 식품 영양 등 직접적인 사회 서비스를 제공합니다.</p>
+                    <button class="btn btn-light-green" onclick="toggleExample('example2')">기업 예시 보기</button>
+                    <div id="example2" class="example-section">
+                        <ul>
+                            <li><a href="http://www.ehumancare.com/" target="_blank"><strong>✅ 사회협동조합 휴먼케어</strong></a></li>
+                            <li>• 노인과 장애인을 위한 요양기관 운영, 복지용구사업, 장애인 활동보조 지원 등 사회서비스 제공 중심</li>
+                            <ul>
+                    </div>
+                    <li><a class="nav-link" id="type3-tab" data-bs-toggle="tab" href="#type3" role="tab" aria-controls="type3" aria-selected="false">3. 환경보호형</a></li>
+                    <p>환경 보호, 자원 순환 등 지속 가능한 발전을 중심으로 활동합니다.</p>
+                    <button class="btn btn-light-green" onclick="toggleExample('example3')">기업 예시 보기</button>
+                    <div id="example3" class="example-section">
+                        <ul>
+                            <li><a href="https://www.patagoniaprovisions.com/pages/regenerative-organic-agriculture" target="_blank"><strong>✅ 파타고니아</strong></a></li>
+                            <li>• 친환경 제품 생산, 재활용 의류 판매, 환경단체 기부 등 환경 보호 활동 중심</li>
+                            <ul>
+                        </ul>
+                    </div>
+                    <li><a class="nav-link" id="type4-tab" data-bs-toggle="tab" href="#type4" role="tab" aria-controls="type4" aria-selected="false">4. 지역 사회 공헌형</a></li>
+                    <p>지역사회와 밀접하게 연계되어, 지역 주민들의 삶의 질 향상에 기여하는 것을 목표로 합니다.</p>
+                    <button class="btn btn-light-green" onclick="toggleExample('example4')">기업 예시 보기</button>
+                    <div id="example4" class="example-section">
+                        <ul>
+                            <li><a href="https://www.gamcheon.or.kr/" target="_blank"><strong>✅ 사단법인 감천문화마을 주민 협의회</strong></a></li>
+                            <li>• 감천문화마을 조성, 카페·맛집·관광상품 개발 및 판매 등 지역사회 공헌 활동 중심
+                        </ul>
+                    </div>
+                    <li><a class="nav-link" id="type5-tab" data-bs-toggle="tab" href="#type5" role="tab" aria-controls="type5" aria-selected="false">5. 혼합형</a></li>
+                    <p>여러 유형을 통합적으로 실천하는 기업으로 다양한 방향의 사회 서비스를 제공합니다.</p>
+                    <button class="btn btn-light-green" onclick="toggleExample('example5')">기업 예시 보기</button>
+                    <div id="example5" class="example-section">
+                        <ul>
+                            <li><a href="https://www.otoki.com/esg/otgsocialcontribution" target="_blank"><strong>✅ 오뚜기</strong></a></li>
+                            <li>• 장애인 고용, 장학사업, 지역 봉사단 운영 등 일자리 제공과 지역사회 공헌 활동 병행
+                        <li><a href="https://www.danone.com/sustainability.html" target="_blank"><strong>✅ 다논</strong></a></li>
+                            <li>• 저소득 국가에 영양 요구르트 공급, 지역 농가와의 생산 연계 등 사회 서비스 제공과 지역사회 공헌 활동 병행
+                        <li><a href="https://www.starbucks.co.kr/index.do" target="_blank"><strong>✅ 스타벅스</strong></a></li>
+                            <li>• 커뮤니티 스토어 운영, 청년 교육 프로그램, 윤리적 소비 촉진 등 사회 서비스 제공과 지역사회 공헌 활동 병행
+                            <li><a href="https://www.unilever.com/sustainability/responsible-business/n" target="_blank"><strong>✅ 유니레버</strong></a></li>
+                            <li>• 위생 제품 개발, 재활용 용기 개발 등 사회서비스 제공과 환경 보호 활 동 병행
+                        </div>        
+                        <li><a class="nav-link" id="type6-tab" data-bs-toggle="tab" href="#type6" role="tab" aria-controls="type6" aria-selected="false">6. 기타(창의·혁신)형</a></li>
+                        <p>여러 유형을 통합적으로 실천하는 기업으로 다양한 방향의 사회 서비스를 제공합니다.</p>
+                        <button class="btn btn-light-green" onclick="toggleExample('example6')">기업 예시 보기</button>
+                        <div id="example6" class="example-section">
+                            <ul>
+                            <li><a href="https://www.beautifulstore.org/one-view-beautiful-store" target="_blank"><strong>✅ (재)아름다운가게</strong></a></li>
+                            <li>• 물건의 재사용과 순환을 통한 생태적·친환경적 변화 추구, 수익배분을 통한 나눔 실천 등 창의혁신 활동 중심
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+    <!-- 선한 영향력 모아보기 섹션 -->
+<div class="tabs-section">
+    <h2>선한 영향력 모아보기</h2>
+    <ul class="nav nav-tabs" id="impactTab" role="tablist">
+        <li class="nav-item" role="presentation">
+            <a class="nav-link active" id="articles-tab" data-bs-toggle="tab" href="#articles" role="tab"
+                aria-controls="articles" aria-selected="true">관련 기사 읽기</a>
+        </li>
+        <li class="nav-item" role="presentation">
+            <a class="nav-link" id="reviews-tab" data-bs-toggle="tab" href="#reviews" role="tab" aria-controls="reviews"
+                aria-selected="false">후기 나누기</a>
+        </li>
+    </ul>
+    <div class="tab-content" id="impactTabContent">
+        <!-- 관련 기사 읽기 -->
+        <div class="tab-pane fade show active" id="articles" role="tabpanel" aria-labelledby="articles-tab">
+            <h3>관련 기사 읽기</h3>
+            <div class="card mb-3">
+                <div class="card-body">
+                    <h5 class="card-title">“[오뚜기 탐구] '착한기업' 대명사 갓뚜기, 친환경 ESG 선도 기업으로 우뚝”</h5>
+                    <p class="card-text">시사주간</p>
+                    <a href="https://www.sisaweekly.com/news/articleView.html?idxno=36847&utm_source=chatgpt.com" target="_blank" class="btn btn-primary">기사 보기</a>
+                </div>
+            </div>
+            <div class="card mb-3">
+                <div class="card-body">
+                    <h5 class="card-title">“환경을 위한 진정성, 파타고니아의 지속 가능 경영”</h5>
+                    <p class="card-text">소비자 평가</p>
+                    <a href="http://www.iconsumer.or.kr/news/articleView.html?idxno=27292&utm_source=chatgpt.com" target="_blank" class="btn btn-primary">기사 보기</a>
+                </div>
+            </div>
+            <div class="card mb-3">
+                <div class="card-body">
+                    <h5 class="card-title">“유니레버, 새 공급사와 계약할 때 반드시 ‘OOO’를 확인한다[기업 인권경영 리포트⑮]”</h5>
+                    <p class="card-text">한국경제</p>
+                    <a href="https://www.hankyung.com/article/202210095954i?utm_source=chatgpt.com" target="_blank" class="btn btn-primary">기사 보기</a>
+                </div>
+            </div>
+            <div class="card mb-3">
+                <div class="card-body">
+                    <h5 class="card-title">“미국 소비자 단체, 스타벅스에 소송···원두 100% 윤리 구매?”</h5>
+                    <p class="card-text">오피니언 뉴스</p>
+                    <a href="https://www.opinionnews.co.kr/news/articleView.html?idxno=92631&utm_source=chatgpt.com" target="_blank" class="btn btn-primary">기사 보기</a>
+                </div>
+            </div>
+        </div>
+        <!-- 후기 나누기 -->
+        <div class="tab-pane fade" id="reviews" role="tabpanel" aria-labelledby="reviews-tab">
+            <h3>후기 나누기</h3>
+            <p>당신이 만난 선한 기업에 대한 이야기를 들려주세요!</p>
+    <!-- 후기 작성 폼 -->
+    <form id="reviewForm">
+        <div class="mb-3">
+            <label for="reviewTitle" class="form-label">제목</label>
+            <input type="text" class="form-control" id="reviewTitle" placeholder="예: 감동적인 나눔 실천 사례">
+        </div>
+        <div class="mb-3">
+            <label for="reviewCompany" class="form-label">기업명</label>
+            <input type="text" class="form-control" id="reviewCompany" placeholder="예: 아름다운가게">
+        </div>
+        <div class="mb-3">
+            <label for="reviewText" class="form-label">내용</label>
+            <textarea class="form-control" id="reviewText" rows="4" placeholder="후기를 자유롭게 적어주세요."></textarea>
+        </div>
+        <button type="submit" class="btn btn-success">후기 등록</button>
+    </form>
+
+    <hr>
+
+    <!-- 후기 리스트 -->
+    <div id="reviewList">
+        <h4 class="mt-4">등록된 후기</h4>
+        <p>아직 등록된 후기가 없습니다.</p>
+    </div>
+</div>
+
+        </div>
+    </div>
+</div>
+<script>
+    document.getElementById("reviewForm").addEventListener("submit", function (e) {
+        e.preventDefault(); // 기본 폼 제출 막기
+
+        const title = document.getElementById("reviewTitle").value.trim();
+        const company = document.getElementById("reviewCompany").value.trim();
+        const content = document.getElementById("reviewText").value.trim();
+
+        if (!title || !company || !content) {
+            alert("모든 항목을 입력해주세요!");
+            return;
+        }
+
+        const reviewList = document.getElementById("reviewList");
+
+        // 기존 "아직 등록된 후기가 없습니다." 제거
+        const defaultText = reviewList.querySelector("p");
+        if (defaultText) {
+            defaultText.remove();
+        }
+
+        // 후기 카드 요소 만들기
+        const card = document.createElement("div");
+        card.className = "card mb-3";
+
+        const cardBody = document.createElement("div");
+        cardBody.className = "card-body";
+
+        const reviewTitle = document.createElement("h5");
+        reviewTitle.className = "card-title";
+        reviewTitle.textContent = title;
+
+        const reviewCompany = document.createElement("h6");
+        reviewCompany.className = "card-subtitle mb-2 text-muted";
+        reviewCompany.textContent = `기업명: ${company}`;
+
+        const reviewContent = document.createElement("p");
+        reviewContent.className = "card-text";
+        reviewContent.textContent = content;
+
+        // 카드 조립
+        cardBody.appendChild(reviewTitle);
+        cardBody.appendChild(reviewCompany);
+        cardBody.appendChild(reviewContent);
+        card.appendChild(cardBody);
+        reviewList.appendChild(card);
+
+        // 입력창 초기화
+        document.getElementById("reviewForm").reset();
+    });
+</script>
+</body>
